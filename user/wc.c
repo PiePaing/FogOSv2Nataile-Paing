@@ -45,14 +45,22 @@ void wc_stats(int fd, char *name, int show_lines, int show_words, int show_chars
     exit(1);
   }
 
-  // Display counts based on flags
+  // Display counts based on flags with descriptive labels
   int flag_used = show_lines || show_words || show_chars;
-  if (show_lines) printf("%d ", lines);
-  if (show_words) printf("%d ", words);
-  if (show_chars) printf("%d ", chars);
-  if (!flag_used) printf("%d %d %d ", lines, words, chars);  // default: show all
-
-  printf("%s\n", name);
+  
+  if (flag_used) {
+    // Show specific counts with labels
+    if (show_lines) printf("Line count: %d\n", lines);
+    if (show_words) printf("Word count: %d\n", words);
+    if (show_chars) printf("Character count: %d\n", chars);
+    printf("File name: %s\n", name);
+  } else {
+    // Default: show all counts with labels
+    printf("Line count: %d\n", lines);
+    printf("Word count: %d\n", words);
+    printf("Character count: %d\n", chars);
+    printf("File name: %s\n", name);
+  }
 }
 
 int main(int argc, char *argv[]) {
