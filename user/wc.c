@@ -14,10 +14,10 @@ int is_word_char(char c) {
 // name: filename to display in output
 // show_lines, show_words, show_chars: flags for which counts to display
 void wc_stats(int fd, char *name, int show_lines, int show_words, int show_chars, int show_bytes, int show_max_line) {
-  int lines = 0, 
-  int words = 0, 
-  int chars = 0, 
-  int bytes = 0, 
+  int lines = 0;
+  int words = 0; 
+  int chars = 0; 
+  int bytes = 0; 
   int max_line_len = 0;
   int current_line_len = 0;  // length of current line
   int inword = 0;  // tracks if we're currently inside a word
@@ -87,10 +87,10 @@ void wc_stats(int fd, char *name, int show_lines, int show_words, int show_chars
 }
 
 int main(int argc, char *argv[]) {
-  int show_lines = 0, 
-  int show_words = 0, 
-  int show_chars = 0, 
-  int show_bytes = 0, 
+  int show_lines = 0; 
+  int show_words = 0; 
+  int show_chars = 0; 
+  int show_bytes = 0; 
   int show_max_line = 0;
   int file_start = 1;  // index where filenames start in argv
   int i;
