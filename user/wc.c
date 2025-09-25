@@ -1,3 +1,10 @@
+// Usage:
+// wc file.txt → lines, words, chars, filename
+// wc -l file.txt → lines, filename
+// wc -w file.txt → words, filename
+// wc -c file.txt → chars, filename
+// wc -lw file.txt → lines, words, filename
+
 #include "types.h"
 #include "user.h"
 
