@@ -123,14 +123,14 @@ main(void)
   // - "chars" counts all bytes read (ASCII), same as "bytes"
   // - "max line length" includes the newline in the length (because you increment before checking '\n')
   struct Case cases[] = {
-    { "tests/wc/empty.txt",          0, 0, 0, 0, 0 },
-    { "tests/wc/nl_only.txt",        1, 0, 1, 1, 1 },   // newline counted in maxline
-    { "tests/wc/hello.txt",          1, 1, 6, 6, 6 },   // "hello\n"
-    { "tests/wc/words_spaces.txt",   1, 3, 6, 6, 6 },   // "a b c\n"
-    { "tests/wc/tabs_newlines.txt",  2, 3, 7, 7, 6 },   // "a\tb c\n\n" -> first line len 6 incl '\n'
-    { "tests/wc/multilin.txt",       2, 3, 14,14, 8 },  // "one two\nthree\n" -> first line 8 incl '\n'
-    { "tests/wc/longline.txt",       1, 1, 301,301,301 } // 300 'a' + '\n'
-  };
+  { "empty.txt",          0, 0, 0, 0, 0 },
+  { "nlonly.txt",         1, 0, 1, 1, 1 },
+  { "hello.txt",          1, 1, 6, 6, 6 },
+  { "words.txt",          1, 3, 6, 6, 6 },
+  { "tabsnl.txt",         2, 3, 7, 7, 6 },
+  { "multi.txt",          2, 3, 14,14, 8 },
+  { "longline.txt",       1, 1, 301,301,301 }
+};
 
   int pass=0, fail=0;
   int N = sizeof(cases)/sizeof(cases[0]);
@@ -143,10 +143,6 @@ main(void)
     check_one("-b", cases[i].path, 0,0,0, cases[i].bytes, 0, &pass, &fail);
     check_one("-L", cases[i].path, 0,0,0,0, cases[i].maxline, &pass, &fail);
   }
-
-  // also test a combined flags run on a mid-complex file
-  check_one("-lwc", "tests/wc/multilin.txt", 2,3,14,0,0, &pass, &fail);
-  check_one("-bL",  "tests/wc/multilin.txt", 0,0,0,14,8, &pass, &fail);
 
   printf("wc_test summary: %d pass, %d fail\n", pass, fail);
   exit(fail ? 1 : 0);

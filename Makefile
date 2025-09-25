@@ -138,13 +138,19 @@ UPROGS=\
 	$U/_usertests\
 	$U/_grind\
 	$U/_wc\
+	$U/_wc_test\
 	$U/_zombie\
 	$U/_logstress\
 	$U/_forphan\
 	$U/_dorphan\
 
-fs.img: mkfs/mkfs README.md $(UPROGS) tests
-	mkfs/mkfs fs.img README.md $(UPROGS) tests
+#fs.img: mkfs/mkfs README.md $(UPROGS) tests/wc
+#	mkfs/mkfs fs.img README.md $(UPROGS) tests/wc
+
+fs.img: mkfs/mkfs README.md $(UPROGS) \
+  empty.txt nlonly.txt hello.txt words.txt tabsnl.txt multi.txt longline.txt
+	mkfs/mkfs fs.img README.md $(UPROGS) \
+  empty.txt nlonly.txt hello.txt words.txt tabsnl.txt multi.txt longline.txt
 
 -include kernel/*.d user/*.d
 
